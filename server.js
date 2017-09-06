@@ -21,6 +21,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.get('/', (req, res) => {
   /*the sendFile has index served back to the browser instead */
     res.sendFile(__dirname + '/index.html')
+/*use the find method to get quotes from MongoLab*/
+    var cursor = db.collection('quotes').find().toArray(function(err,results){
+      console.log(results)
+    })
   })
 
   app.post('/quotes', (req, res) => {
@@ -31,6 +35,8 @@ app.get('/', (req, res) => {
       res.redirect('/')
     })
   })
+
+
 
 
 console.log('May node be with you')
